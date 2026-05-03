@@ -1,96 +1,132 @@
-## Document Q&A (RAG-lite)
+# 📄 AI Document Q&A (RAG System)
 
-Full-stack Document Q&A app:
-- Upload a PDF
-- Extract + chunk text
-- Create embeddings
-- Store/reuse vectors via FAISS
-- Ask questions
-- Retrieve relevant chunks
-- Answer using an LLM **only from retrieved context**
-- If context does not contain the answer, respond: **"I don't know based on the document"**
-
-### Tech stack
-- **Backend**: FastAPI (Python)
-- **Frontend**: React (Vite)
-- **Embeddings + Chat**: OpenAI API
-- **Vector store**: FAISS
+> ⚡ A context-aware AI assistant that answers questions strictly from uploaded PDF documents — no hallucinations.
 
 ---
 
-## Project structure
+## 🎥 Demo Video
+
+👉[ https://YOUR_VIDEO_LINK_HERE](https://youtu.be/29zr5QDyFUk)
+
+---
+
+## ✨ Features
+
+* 📤 Upload PDF documents
+* 💬 Ask questions based on document content
+* 🧠 Context-aware answers using RAG
+* ❌ Rejects irrelevant questions (no hallucination)
+* 📍 Source tracking with page numbers
+* ⚡ Fast semantic search using FAISS
+* 🎨 Clean and modern chat UI
+
+---
+
+## 🧱 Architecture
+
 ```
-document-qa-rag/
-  backend/
-    app/
-      core/
-      services/
-      store/
-      utils/
-      main.py
-      schemas.py
-    requirements.txt
-    .env.example
-  frontend/
-    src/
-      components/
-      api.ts
-      App.tsx
-      main.tsx
-      styles.css
-    index.html
-    package.json
-    vite.config.ts
-    tsconfig.json
-  docker-compose.yml
-  .gitignore
+PDF → Text Extraction → Chunking → Embeddings
+        ↓
+      FAISS (Vector Store)
+        ↓
+   Query → Similarity Search
+        ↓
+      LLM (OpenAI)
+        ↓
+   Context-based Answer
 ```
 
 ---
 
-## Setup
+## 🛠 Tech Stack
 
-### 1) Backend (FastAPI)
-From repo root:
+| Layer      | Tech                        |
+| ---------- | --------------------------- |
+| Frontend   | React + Vite + Tailwind CSS |
+| Backend    | FastAPI                     |
+| Vector DB  | FAISS                       |
+| LLM        | OpenAI (gpt-5.4-mini)       |
+| Embeddings | Sentence Transformers       |
 
-```powershell
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/Jatinkaushik123/AI-Document-RAG.git
+cd AI-Document-RAG
+```
+
+---
+
+### 2. Backend Setup
+
+```bash
 cd backend
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-copy .env.example .env
+uvicorn app.main:app --reload
 ```
 
-Edit `backend/.env` and set `OPENAI_API_KEY`.
+---
 
-Run:
+### 3. Frontend Setup
 
-```powershell
-uvicorn app.main:app --reload --port 8000
-```
-
-Backend docs:
-- Swagger: `http://localhost:8000/docs`
-
-### 2) Frontend (React)
-From repo root:
-
-```powershell
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-Open:
-- `http://localhost:5173`
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file inside `backend/`:
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+TOP_K=3
+```
 
 ---
 
-## Usage
-1. Upload a PDF
-2. Ask questions in the chat
+## 🎯 Example Usage
 
-The backend will:
-- search top chunks from FAISS
-- answer **only** using those chunks
-- return the fallback phrase if the answer isn’t supported by the document
+| Query                        | Result                 |
+| ---------------------------- | ---------------------- |
+| What is this document about? | ✅ Answer from PDF      |
+| Explain the main idea        | ✅ Context-based answer |
+| How to play Free Fire?       | ❌ Rejected             |
+
+---
+
+## 🧪 Key Design Decisions
+
+This system is built to **avoid hallucinations** by:
+
+* Filtering low-relevance chunks using similarity score
+* Strict prompt instructions (context-only answering)
+* Rejecting answers not present in the document
+
+---
+
+
+## 🚀 Future Improvements
+
+* 🔍 Highlight exact source text
+* 📄 PDF preview panel
+* 🧠 Multi-document support
+* 💾 Chat history & memory
+* 📊 Confidence score display
+
+---
+
+## 🧑‍💻 Author
+
+**Jatin Kaushik**
+
+---
+
+## ⭐ If you found this useful, give it a star!
