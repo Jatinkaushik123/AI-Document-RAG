@@ -6,7 +6,7 @@
 
 ## 🎥 Demo Video
 
-👉[![Watch Demo](preview.png)](https://youtu.be/29zr5QDyFUk)
+[![AI Document Q&A Demo](https://img.youtube.com/vi/29zr5QDyFUk/maxresdefault.jpg)](https://youtu.be/29zr5QDyFUk)
 
 ---
 
