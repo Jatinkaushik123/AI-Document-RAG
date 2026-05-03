@@ -98,7 +98,7 @@ TOP_K=3
 | ---------------------------- | ---------------------- |
 | What is this document about? | ✅ Answer from PDF      |
 | Explain the main idea        | ✅ Context-based answer |
-| How to play Free Fire?       | ❌ Rejected             |
+| Summarize this document      | ✅ Conxtext-based summary  |
 
 ---
 
